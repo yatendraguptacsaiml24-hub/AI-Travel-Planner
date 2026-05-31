@@ -18,7 +18,7 @@ app.secret_key = 'ai_travel_planner_secret_key_2024'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_DOMAIN'] = None
+app.config['SESSION_PERMANENT'] = True
 
 CORS(
     app,
@@ -103,6 +103,9 @@ def register():
     users.append(user)
     session['user_id'] = user['id']
     session['user_name'] = user['name']
+    session.permanent = True
+
+print("SESSION AFTER REGISTER:", dict(session))
     
     return jsonify({
         "message": "User registered successfully",
@@ -141,6 +144,9 @@ def login():
     
     session['user_id'] = user['id']
     session['user_name'] = user['name']
+    session.permanent = True
+
+    print("SESSION AFTER LOGIN:", dict(session))
     
     return jsonify({
         "message": "Login successful",
@@ -159,6 +165,9 @@ def logout():
 
 @app.route('/api/user', methods=['GET'])
 def get_current_user():
+
+    print("SESSION IN /api/user:", dict(session))
+    
     if not is_authenticated():
         return jsonify({"error": "Not authenticated"}), 401
     
