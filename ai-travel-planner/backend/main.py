@@ -15,11 +15,11 @@ import os
 app = Flask(__name__)
 app.secret_key = 'ai_travel_planner_secret_key_2024'
 
-# Session settings for Render deployment
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_DOMAIN'] = None
 
-# CORS settings
 CORS(
     app,
     supports_credentials=True,
