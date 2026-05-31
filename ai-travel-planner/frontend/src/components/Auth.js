@@ -20,12 +20,15 @@ const Auth = ({ onLogin }) => {
     }));
   };
 
+  const API_BASE = "https://ai-travel-planner-2-msg9.onrender.com";
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    const endpoint = isLogin ? '/api/login' : '/api/register';
+    const endpoint = isLogin
+  ? `${API_BASE}/api/login`
+  : `${API_BASE}/api/register`;
     const data = isLogin 
       ? { 
           email: formData.email, 

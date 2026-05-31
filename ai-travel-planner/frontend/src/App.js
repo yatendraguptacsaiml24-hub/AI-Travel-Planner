@@ -14,9 +14,11 @@ function App() {
     checkAuthStatus();
   }, []);
 
+  const API_BASE = "https://ai-travel-planner-2-msg9.onrender.com";
+
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('/api/user', {
+      const response = await fetch(`${API_BASE}/api/user`, {
         credentials: 'include'
       });
       if (response.ok) {
@@ -33,7 +35,7 @@ function App() {
 
   const fetchPlans = async () => {
     try {
-      const response = await fetch('/api/plans', {
+      const response = await fetch(`${API_BASE}/api/plans`, {
         credentials: 'include'
       });
       if (response.ok) {

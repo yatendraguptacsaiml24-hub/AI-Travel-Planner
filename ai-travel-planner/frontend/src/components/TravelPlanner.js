@@ -55,7 +55,8 @@ const TravelPlanner = ({ onPlanCreated }) => {
         notes: formData.notes
       };
 
-      const response = await fetch('/api/generate-plan', {
+      const API_BASE = "https://ai-travel-planner-2-msg9.onrender.com";
+      const response = await fetch(`${API_BASE}/api/generate-plan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
