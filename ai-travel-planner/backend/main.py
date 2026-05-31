@@ -14,7 +14,19 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'ai_travel_planner_secret_key_2024'
-CORS(app, supports_credentials=True)
+
+# Session settings for Render deployment
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
+
+# CORS settings
+CORS(
+    app,
+    supports_credentials=True,
+    origins=[
+        "https://ai-travel-planner-1-jbzk.onrender.com"
+    ]
+)
 
 # Configure Gemini AI (temporarily disabled)
 print("⚠️  AI features temporarily disabled. Using mock data for demonstration.")
